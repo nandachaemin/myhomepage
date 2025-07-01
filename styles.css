@@ -1,0 +1,1352 @@
+/* 전체 페이지에 넥슨 폰트 적용 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NexonGothic', sans-serif;
+}
+
+/* 헤더 스타일 */
+.header {
+    /* 배경색을 흰색으로 설정 */
+    background-color: white;
+    /* 그림자 효과로 구분감 추가 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* 헤더 내용을 가로로 나란히 정렬 */
+    display: flex;
+    /* 세로 중앙 정렬 */
+    align-items: center;
+    /* 양쪽 끝과 가운데 정렬 */
+    justify-content: space-between;
+    /* 여백 설정 */
+    padding: 1.5rem 2rem;  /* 패딩도 약간 늘려서 균형 맞춤 */
+    /* 요소들 사이 간격 */
+    gap: 10px;
+}
+
+/* 헤더 왼쪽 영역 (로고와 브랜드 이름) */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;  /* 간격도 약간 늘림 */
+}
+
+/* 로고 이미지 크기 조절 - 1.5배 크기로 증가 */
+.logo {
+    height: 60px;  /* 40px에서 60px로 증가 */
+    width: auto;
+}
+
+/* 브랜드 이름 스타일 - 로고 크기에 맞춰 글자 크기도 조정 */
+.brand-name {
+    font-size: 1.8rem;  /* 1.5rem에서 1.8rem으로 증가 */
+    color: #333;
+}
+
+/* 네비게이션 메뉴 스타일 */
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;  /* 글자 크기도 약간 키움 */
+}
+
+.nav-menu a:hover {
+    color: #666;
+}
+
+/* 로그인 버튼 스타일 */
+.login-btn {
+    /* 흰색 배경 */
+    background-color: white;
+    /* 검은색 테두리 */
+    border: 1px solid #000;
+    /* 둥근 모서리 */
+    border-radius: 25px;
+    /* 패딩으로 버튼 크기 조절 */
+    padding: 0.7rem 2rem;  /* 버튼 크기도 약간 키움 */
+    /* 커서 모양 변경 */
+    cursor: pointer;
+    /* 글자 스타일 */
+    font-size: 1.1rem;  /* 글자 크기도 약간 키움 */
+}
+
+.login-btn:hover {
+    background-color: #f5f5f5;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .header {
+        /* 모바일에서는 세로로 정렬 */
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-menu ul {
+        gap: 1rem;
+    }
+
+    .header-left {
+        margin-bottom: 1rem;
+    }
+
+    .nav-menu {
+        margin: 1rem 0;
+    }
+    
+    /* 모바일에서는 로고 크기를 약간 줄임 */
+    .logo {
+        height: 50px;
+    }
+    
+    .brand-name {
+        font-size: 1.5rem;
+    }
+}
+
+/* 히어로 섹션 스타일 */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 캐러셀 컨테이너 */
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* 슬라이드 스타일 */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* 슬라이드 이미지 */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 슬라이드 내용 */
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 80%;
+    max-width: 800px;
+    /* 텍스트 그림자 효과 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 브랜드 이름 */
+.slide-content .brand {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* 제목 */
+.slide-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* 설명 텍스트 */
+.slide-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* 구매하기 버튼 */
+.cta-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: white;
+    color: #333;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #333;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 캐러셀 네비게이션 버튼 */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10;
+    padding: 1rem;
+}
+
+.carousel-btn.prev {
+    left: 2rem;
+}
+
+.carousel-btn.next {
+    right: 2rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .slide-content .brand {
+        font-size: 2rem;
+    }
+
+    .slide-content h2 {
+        font-size: 2rem;
+    }
+
+    .slide-content p {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    .carousel-btn {
+        font-size: 2rem;
+    }
+}
+
+/* 제품 섹션 스타일 */
+.products {
+    padding: 5rem 0;
+    background-color: #f9f9f9;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* 매장 대표 이미지 */
+.shop-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+
+/* 제품 섹션 제목 */
+.product-title {
+    font-size: 2.5rem;
+    color: #000;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: bold;
+}
+
+/* 제품 그리드 레이아웃 (2x2) */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+/* 개별 제품 아이템 */
+.product-item {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+/* 제품 이미지 */
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    /* 좌우 여백 3px씩 */
+    margin: 0 3px;
+    width: calc(100% - 6px);
+}
+
+/* 제품 정보 영역 */
+.product-info {
+    padding: 1.5rem;
+}
+
+/* 제품 제목 */
+.product-info h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* 제품 설명 */
+.product-description {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 미리보기 텍스트 (3줄만 보임) */
+.preview-text {
+    margin-bottom: 0.5rem;
+}
+
+/* 전체 텍스트 (숨겨진 상태) */
+.full-text {
+    margin-top: 1rem;
+}
+
+.full-text p {
+    margin-bottom: 0.5rem;
+}
+
+/* 더보기 버튼 */
+.more-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1rem auto 0 auto;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+.more-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .product-title {
+        font-size: 2rem;
+    }
+
+    /* 모바일에서는 1열로 배치 */
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .shop-image {
+        height: 200px;
+    }
+
+    .product-image {
+        height: 200px;
+    }
+
+    .product-info {
+        padding: 1rem;
+    }
+
+    .product-info h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* 고객 후기 섹션 스타일 */
+.reviews {
+    /* 섹션 위아래 여백 */
+    padding: 5rem 0;
+    /* 배경색을 흰색으로 설정 */
+    background-color: white;
+}
+
+/* 후기 섹션 제목 */
+.reviews-title {
+    /* 글자 크기를 크게 설정 */
+    font-size: 2.5rem;
+    /* 글자색을 검은색으로 설정 */
+    color: #000;
+    /* 가운데 정렬 */
+    text-align: center;
+    /* 아래쪽 여백 */
+    margin-bottom: 3rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+}
+
+/* 후기 그리드 레이아웃 (3x2 배치) */
+.reviews-grid {
+    /* 그리드 레이아웃으로 설정 */
+    display: grid;
+    /* 3개 열로 나누기 */
+    grid-template-columns: repeat(3, 1fr);
+    /* 각 후기 박스 사이의 간격 */
+    gap: 2rem;
+}
+
+/* 개별 후기 박스 */
+.review-item {
+    /* 배경색을 연한 회색으로 설정 */
+    background-color: #f8f9fa;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 15px;
+    /* 안쪽 여백 설정 */
+    padding: 2rem;
+    /* 그림자 효과 추가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 가운데 정렬 */
+    text-align: center;
+    /* 마우스 올렸을 때 변화 효과 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 후기 박스에 마우스를 올렸을 때 */
+.review-item:hover {
+    /* 살짝 위로 올라가는 효과 */
+    transform: translateY(-5px);
+    /* 그림자를 더 진하게 */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 별점 표시 */
+.review-stars {
+    /* 글자 크기 설정 */
+    font-size: 1.5rem;
+    /* 글자색을 금색으로 설정 */
+    color: #ffc107;
+    /* 아래쪽 여백 */
+    margin-bottom: 1rem;
+}
+
+/* 후기 내용 */
+.review-content {
+    /* 아래쪽 여백 */
+    margin-bottom: 1.5rem;
+}
+
+/* 후기 내용의 각 문장 */
+.review-content p {
+    /* 글자색을 진한 회색으로 설정 */
+    color: #333;
+    /* 줄 간격 설정 */
+    line-height: 1.6;
+    /* 아래쪽 여백 */
+    margin-bottom: 0.8rem;
+    /* 글자 크기 설정 */
+    font-size: 1rem;
+}
+
+/* 후기 작성자 정보 */
+.review-author {
+    /* 글자색을 더 진한 회색으로 설정 */
+    color: #666;
+    /* 글자 크기를 작게 설정 */
+    font-size: 0.9rem;
+    /* 기울임체로 설정 */
+    font-style: italic;
+}
+
+/* 작성자 이름을 굵게 표시 */
+.review-author strong {
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+    /* 글자색을 검은색으로 설정 */
+    color: #333;
+}
+
+/* 반응형 디자인 (태블릿 크기) */
+@media (max-width: 1024px) {
+    /* 태블릿에서는 2열로 배치 */
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 반응형 디자인 (모바일 크기) */
+@media (max-width: 768px) {
+    /* 후기 섹션 제목 크기 조정 */
+    .reviews-title {
+        font-size: 2rem;
+    }
+
+    /* 모바일에서는 1열로 배치 */
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* 후기 박스 안쪽 여백 조정 */
+    .review-item {
+        padding: 1.5rem;
+    }
+
+    /* 별점 크기 조정 */
+    .review-stars {
+        font-size: 1.3rem;
+    }
+
+    /* 후기 내용 글자 크기 조정 */
+    .review-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* CEO 인사말 섹션 스타일 */
+.greeting {
+    /* 섹션 위아래 여백 */
+    padding: 5rem 0;
+    /* 배경색을 연한 회색으로 설정 */
+    background-color: #f9f9f9;
+}
+
+/* 인사말 섹션 제목 */
+.greeting-title {
+    /* 글자 크기를 크게 설정 */
+    font-size: 2.5rem;
+    /* 글자색을 검은색으로 설정 */
+    color: #000;
+    /* 가운데 정렬 */
+    text-align: center;
+    /* 아래쪽 여백 */
+    margin-bottom: 3rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+}
+
+/* 인사말 컨텐츠 영역 */
+.greeting-content {
+    /* 플렉스 레이아웃으로 설정 */
+    display: flex;
+    /* 세로 중앙 정렬 */
+    align-items: flex-start;
+    /* 요소들 사이의 간격 */
+    gap: 3rem;
+    /* 아래쪽 여백 */
+    margin-bottom: 3rem;
+}
+
+/* CEO 이미지 영역 */
+.ceo-image {
+    /* 고정 너비 설정 */
+    flex: 0 0 300px;
+}
+
+/* CEO 사진 */
+.ceo-photo {
+    /* 너비를 100%로 설정 */
+    width: 100%;
+    /* 높이를 자동으로 설정 */
+    height: auto;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 15px;
+    /* 그림자 효과 추가 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 인사말 텍스트 영역 */
+.greeting-text {
+    /* 나머지 공간을 모두 차지 */
+    flex: 1;
+}
+
+/* 인사말 텍스트 문단 */
+.greeting-text p {
+    /* 글자색을 진한 회색으로 설정 */
+    color: #333;
+    /* 줄 간격 설정 */
+    line-height: 1.8;
+    /* 아래쪽 여백 */
+    margin-bottom: 1rem;
+    /* 글자 크기 설정 */
+    font-size: 1.1rem;
+}
+
+/* CEO 서명 */
+.ceo-signature {
+    /* 오른쪽 정렬 */
+    text-align: right;
+    /* 위쪽 여백 */
+    margin-top: 2rem;
+    /* 글자 크기를 크게 설정 */
+    font-size: 1.2rem;
+}
+
+/* 더보기/닫기 버튼 */
+.greeting-toggle-btn {
+    /* 배경색을 파란색으로 설정 */
+    background-color: #007bff;
+    /* 글자색을 흰색으로 설정 */
+    color: white;
+    /* 테두리 제거 */
+    border: none;
+    /* 안쪽 여백 설정 */
+    padding: 0.8rem 2rem;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 25px;
+    /* 커서를 포인터로 설정 */
+    cursor: pointer;
+    /* 글자 크기 설정 */
+    font-size: 1rem;
+    /* 위쪽 여백 */
+    margin-top: 1.5rem;
+    /* 변화 효과 설정 */
+    transition: background-color 0.3s ease;
+}
+
+/* 버튼에 마우스를 올렸을 때 */
+.greeting-toggle-btn:hover {
+    /* 배경색을 더 진한 파란색으로 변경 */
+    background-color: #0056b3;
+}
+
+/* 고객센터 연락처 영역 */
+.contact-info {
+    /* 가운데 정렬 */
+    text-align: center;
+    /* 배경색을 흰색으로 설정 */
+    background-color: white;
+    /* 안쪽 여백 설정 */
+    padding: 2rem;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 15px;
+    /* 그림자 효과 추가 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 테두리 설정 */
+    border: 2px solid #007bff;
+}
+
+/* 연락처 안내 텍스트 */
+.contact-text {
+    /* 글자 크기를 크게 설정 */
+    font-size: 1.3rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+    /* 글자색을 검은색으로 설정 */
+    color: #333;
+    /* 아래쪽 여백 */
+    margin-bottom: 1rem;
+}
+
+/* 전화번호 영역 */
+.contact-numbers {
+    /* 글자 크기를 매우 크게 설정 */
+    font-size: 1.8rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+}
+
+/* 전화번호 링크 */
+.contact-numbers a {
+    /* 글자색을 파란색으로 설정 */
+    color: #007bff;
+    /* 밑줄 제거 */
+    text-decoration: none;
+    /* 변화 효과 설정 */
+    transition: color 0.3s ease;
+}
+
+/* 전화번호 링크에 마우스를 올렸을 때 */
+.contact-numbers a:hover {
+    /* 글자색을 더 진한 파란색으로 변경 */
+    color: #0056b3;
+    /* 밑줄 추가 */
+    text-decoration: underline;
+}
+
+/* 반응형 디자인 (모바일 크기) */
+@media (max-width: 768px) {
+    /* 인사말 섹션 제목 크기 조정 */
+    .greeting-title {
+        font-size: 2rem;
+    }
+
+    /* 모바일에서는 세로로 배치 */
+    .greeting-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* CEO 이미지 영역 크기 조정 */
+    .ceo-image {
+        flex: none;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    /* 인사말 텍스트 크기 조정 */
+    .greeting-text p {
+        font-size: 1rem;
+    }
+
+    /* 연락처 텍스트 크기 조정 */
+    .contact-text {
+        font-size: 1.1rem;
+    }
+
+    /* 전화번호 크기 조정 */
+    .contact-numbers {
+        font-size: 1.5rem;
+    }
+
+    /* 연락처 영역 여백 조정 */
+    .contact-info {
+        padding: 1.5rem;
+    }
+}
+
+/* Q&A 섹션 스타일 */
+.qna {
+    /* 섹션 위아래 여백 */
+    padding: 5rem 0;
+    /* 배경색을 흰색으로 설정 */
+    background-color: white;
+}
+
+/* Q&A 섹션 제목 */
+.qna-title {
+    /* 글자 크기를 크게 설정 */
+    font-size: 2.5rem;
+    /* 글자색을 검은색으로 설정 */
+    color: #000;
+    /* 가운데 정렬 */
+    text-align: center;
+    /* 아래쪽 여백 */
+    margin-bottom: 3rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+}
+
+/* Q&A 컨텐츠 영역 */
+.qna-content {
+    /* 그리드 레이아웃으로 설정 */
+    display: grid;
+    /* 2개 열로 나누기 */
+    grid-template-columns: 1fr 1fr;
+    /* 열 사이의 간격 */
+    gap: 3rem;
+}
+
+/* 질문 작성 폼 영역 */
+.question-form {
+    /* 배경색을 연한 회색으로 설정 */
+    background-color: #f8f9fa;
+    /* 안쪽 여백 설정 */
+    padding: 2rem;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 15px;
+    /* 그림자 효과 추가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 질문 폼 제목 */
+.question-form h3 {
+    /* 글자 크기 설정 */
+    font-size: 1.5rem;
+    /* 글자색을 검은색으로 설정 */
+    color: #333;
+    /* 아래쪽 여백 */
+    margin-bottom: 1.5rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+}
+
+/* 폼 그룹 */
+.form-group {
+    /* 아래쪽 여백 */
+    margin-bottom: 1.5rem;
+}
+
+/* 폼 라벨 */
+.form-group label {
+    /* 블록 요소로 설정 */
+    display: block;
+    /* 아래쪽 여백 */
+    margin-bottom: 0.5rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+    /* 글자색을 진한 회색으로 설정 */
+    color: #333;
+}
+
+/* 텍스트 입력란 */
+.form-group input,
+.form-group textarea {
+    /* 너비를 100%로 설정 */
+    width: 100%;
+    /* 안쪽 여백 설정 */
+    padding: 0.8rem;
+    /* 테두리 설정 */
+    border: 1px solid #ddd;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 5px;
+    /* 글자 크기 설정 */
+    font-size: 1rem;
+    /* 폰트 설정 */
+    font-family: 'NexonGothic', sans-serif;
+    /* 포커스 효과 설정 */
+    transition: border-color 0.3s ease;
+}
+
+/* 입력란에 포커스했을 때 */
+.form-group input:focus,
+.form-group textarea:focus {
+    /* 아웃라인 제거 */
+    outline: none;
+    /* 테두리 색상을 파란색으로 변경 */
+    border-color: #007bff;
+}
+
+/* 제출 버튼 */
+.submit-btn {
+    /* 배경색을 파란색으로 설정 */
+    background-color: #007bff;
+    /* 글자색을 흰색으로 설정 */
+    color: white;
+    /* 테두리 제거 */
+    border: none;
+    /* 안쪽 여백 설정 */
+    padding: 1rem 2rem;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 25px;
+    /* 커서를 포인터로 설정 */
+    cursor: pointer;
+    /* 글자 크기 설정 */
+    font-size: 1rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+    /* 변화 효과 설정 */
+    transition: background-color 0.3s ease;
+}
+
+/* 제출 버튼에 마우스를 올렸을 때 */
+.submit-btn:hover {
+    /* 배경색을 더 진한 파란색으로 변경 */
+    background-color: #0056b3;
+}
+
+/* 제출 완료 메시지 */
+.submission-message {
+    /* 배경색을 연한 초록색으로 설정 */
+    background-color: #d4edda;
+    /* 글자색을 진한 초록색으로 설정 */
+    color: #155724;
+    /* 안쪽 여백 설정 */
+    padding: 1rem;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 5px;
+    /* 위쪽 여백 */
+    margin-top: 1rem;
+    /* 테두리 설정 */
+    border: 1px solid #c3e6cb;
+}
+
+/* FAQ 섹션 */
+.faq-section {
+    /* 배경색을 흰색으로 설정 */
+    background-color: white;
+    /* 안쪽 여백 설정 */
+    padding: 2rem;
+    /* 모서리를 둥글게 설정 */
+    border-radius: 15px;
+    /* 그림자 효과 추가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 테두리 설정 */
+    border: 1px solid #e9ecef;
+}
+
+/* FAQ 섹션 제목 */
+.faq-section h3 {
+    /* 글자 크기 설정 */
+    font-size: 1.5rem;
+    /* 글자색을 검은색으로 설정 */
+    color: #333;
+    /* 아래쪽 여백 */
+    margin-bottom: 1.5rem;
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+}
+
+/* FAQ 아이템 */
+.faq-item {
+    /* 아래쪽 여백 */
+    margin-bottom: 1.5rem;
+    /* 아래쪽 테두리 추가 */
+    border-bottom: 1px solid #eee;
+    /* 아래쪽 여백 추가 */
+    padding-bottom: 1.5rem;
+}
+
+/* 마지막 FAQ 아이템 */
+.faq-item:last-child {
+    /* 아래쪽 테두리 제거 */
+    border-bottom: none;
+    /* 아래쪽 여백 제거 */
+    padding-bottom: 0;
+    /* 아래쪽 여백 제거 */
+    margin-bottom: 0;
+}
+
+/* FAQ 질문 */
+.faq-question {
+    /* 글자 굵기를 굵게 설정 */
+    font-weight: bold;
+    /* 글자색을 검은색으로 설정 */
+    color: #333;
+    /* 아래쪽 여백 */
+    margin-bottom: 0.5rem;
+    /* 글자 크기 설정 */
+    font-size: 1.1rem;
+}
+
+/* FAQ 답변 */
+.faq-answer {
+    /* 글자색을 회색으로 설정 */
+    color: #666;
+    /* 줄 간격 설정 */
+    line-height: 1.6;
+    /* 글자 크기 설정 */
+    font-size: 1rem;
+}
+
+/* Q와 A 표시 */
+.faq-q {
+    /* 글자색을 파란색으로 설정 */
+    color: #007bff;
+    /* 오른쪽 여백 */
+    margin-right: 0.5rem;
+}
+
+.faq-a {
+    /* 글자색을 초록색으로 설정 */
+    color: #28a745;
+    /* 오른쪽 여백 */
+    margin-right: 0.5rem;
+}
+
+/* 반응형 디자인 (모바일 크기) */
+@media (max-width: 768px) {
+    /* Q&A 섹션 제목 크기 조정 */
+    .qna-title {
+        font-size: 2rem;
+    }
+
+    /* 모바일에서는 세로로 배치 */
+    .qna-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* 질문 폼 여백 조정 */
+    .question-form {
+        padding: 1.5rem;
+    }
+
+    /* FAQ 섹션 여백 조정 */
+    .faq-section {
+        padding: 1.5rem;
+    }
+
+    /* 폼 요소 크기 조정 */
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+    }
+
+    /* 제출 버튼 크기 조정 */
+    .submit-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 푸터 섹션 스타일 */
+.footer {
+    /* 배경색을 진한 회색으로 설정 */
+    background-color: #333;
+    /* 글자색을 흰색으로 설정 */
+    color: white;
+    /* 위아래 여백 설정 */
+    padding: 3rem 0 1rem 0;
+    /* 위쪽 테두리 추가 */
+    border-top: 1px solid #444;
+}
+
+/* 푸터 상단 영역 */
+.footer-top {
+    /* 플렉스 레이아웃으로 설정 */
+    display: flex;
+    /* 양쪽 끝 정렬 */
+    justify-content: space-between;
+    /* 세로 중앙 정렬 */
+    align-items: center;
+    /* 아래쪽 여백 */
+    margin-bottom: 2rem;
+    /* 아래쪽 테두리 추가 */
+    border-bottom: 1px solid #444;
+    /* 아래쪽 여백 추가 */
+    padding-bottom: 1.5rem;
+}
+
+/* 푸터 링크 영역 */
+.footer-links {
+    /* 플렉스 레이아웃으로 설정 */
+    display: flex;
+    /* 세로 중앙 정렬 */
+    align-items: center;
+    /* 요소 사이 간격 */
+    gap: 1rem;
+}
+
+/* 푸터 링크 스타일 */
+.footer-link {
+    /* 글자색을 흰색으로 설정 */
+    color: white;
+    /* 밑줄 제거 */
+    text-decoration: none;
+    /* 글자 크기 설정 */
+    font-size: 0.9rem;
+    /* 변화 효과 설정 */
+    transition: color 0.3s ease;
+}
+
+/* 푸터 링크에 마우스를 올렸을 때 */
+.footer-link:hover {
+    /* 글자색을 연한 회색으로 변경 */
+    color: #ccc;
+}
+
+/* 구분자 스타일 */
+.separator {
+    /* 글자색을 회색으로 설정 */
+    color: #666;
+    /* 양옆 여백 */
+    margin: 0 0.5rem;
+}
+
+/* 소셜미디어 링크 영역 */
+.social-links {
+    /* 플렉스 레이아웃으로 설정 */
+    display: flex;
+    /* 요소 사이 간격 */
+    gap: 1rem;
+}
+
+/* 소셜미디어 링크 스타일 */
+.social-link {
+    /* 블록 요소로 설정 */
+    display: block;
+    /* 글자 크기를 크게 설정 */
+    font-size: 1.5rem;
+    /* 밑줄 제거 */
+    text-decoration: none;
+    /* 변화 효과 설정 */
+    transition: transform 0.3s ease;
+    /* 안쪽 여백 설정 */
+    padding: 0.5rem;
+    /* 배경색을 투명한 흰색으로 설정 */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* 모서리를 둥글게 설정 */
+    border-radius: 50%;
+}
+
+/* 소셜미디어 링크에 마우스를 올렸을 때 */
+.social-link:hover {
+    /* 살짝 확대 효과 */
+    transform: scale(1.1);
+    /* 배경색을 더 진한 흰색으로 변경 */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 푸터 중단 영역 */
+.footer-middle {
+    /* 아래쪽 여백 */
+    margin-bottom: 2rem;
+}
+
+/* 푸터 정보 영역 */
+.footer-info {
+    /* 그리드 레이아웃으로 설정 */
+    display: grid;
+    /* 3개 열로 나누기 */
+    grid-template-columns: repeat(3, 1fr);
+    /* 열 사이의 간격 */
+    gap: 2rem;
+}
+
+/* 푸터 섹션들 (고객센터, 회사, 대표 정보) */
+.contact-section,
+.company-section,
+.ceo-section {
+    /* 줄 간격 설정 */
+    line-height: 1.6;
+}
+
+/* 푸터 섹션 내 문단 */
+.footer-info p {
+    /* 아래쪽 여백 */
+    margin-bottom: 0.5rem;
+    /* 글자 크기 설정 */
+    font-size: 0.9rem;
+}
+
+/* 푸터 섹션 내 강조 텍스트 */
+.footer-info strong {
+    /* 글자색을 연한 회색으로 설정 */
+    color: #ccc;
+    /* 오른쪽 여백 */
+    margin-right: 0.5rem;
+}
+
+/* 푸터 내 링크 (전화번호, 이메일) */
+.footer-info a {
+    /* 글자색을 흰색으로 설정 */
+    color: white;
+    /* 밑줄 제거 */
+    text-decoration: none;
+    /* 변화 효과 설정 */
+    transition: color 0.3s ease;
+}
+
+/* 푸터 내 링크에 마우스를 올렸을 때 */
+.footer-info a:hover {
+    /* 글자색을 연한 파란색으로 변경 */
+    color: #87ceeb;
+    /* 밑줄 추가 */
+    text-decoration: underline;
+}
+
+/* 푸터 하단 영역 */
+.footer-bottom {
+    /* 위쪽 테두리 추가 */
+    border-top: 1px solid #444;
+    /* 위쪽 여백 */
+    padding-top: 1rem;
+    /* 가운데 정렬 */
+    text-align: center;
+}
+
+/* 저작권 텍스트 */
+.copyright {
+    /* 글자 크기를 작게 설정 */
+    font-size: 0.8rem;
+    /* 글자색을 회색으로 설정 */
+    color: #999;
+    /* 글자 간격 설정 */
+    letter-spacing: 0.5px;
+}
+
+/* 반응형 디자인 (태블릿 크기) */
+@media (max-width: 1024px) {
+    /* 푸터 정보를 2열로 변경 */
+    .footer-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* CEO 섹션을 다음 줄로 이동 */
+    .ceo-section {
+        grid-column: 1 / -1;
+    }
+}
+
+/* 반응형 디자인 (모바일 크기) */
+@media (max-width: 768px) {
+    /* 푸터 상단을 세로로 배치 */
+    .footer-top {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* 푸터 정보를 1열로 변경 */
+    .footer-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* 소셜미디어 링크 크기 조정 */
+    .social-link {
+        font-size: 1.2rem;
+        padding: 0.3rem;
+    }
+    
+    /* 푸터 내 텍스트 크기 조정 */
+    .footer-info p {
+        font-size: 0.8rem;
+    }
+    
+    /* 저작권 텍스트 크기 조정 */
+    .copyright {
+        font-size: 0.7rem;
+    }
+}
+
+/* 견체공학 챗봇 버튼 스타일 */
+.chatbot-button {
+    /* 고정 위치로 설정 */
+    position: fixed;
+    /* 화면 하단에서 30px 떨어진 위치 */
+    bottom: 30px;
+    /* 화면 오른쪽에서 30px 떨어진 위치 */
+    right: 30px;
+    /* 다른 요소들보다 위에 표시 */
+    z-index: 1000;
+}
+
+/* 챗봇 링크 스타일 */
+.chatbot-link {
+    /* 플렉스 레이아웃으로 설정 */
+    display: flex;
+    /* 세로 방향으로 배치 */
+    flex-direction: column;
+    /* 가운데 정렬 */
+    align-items: center;
+    /* 세로 가운데 정렬 */
+    justify-content: center;
+    /* 크기 설정 */
+    width: 80px;
+    height: 80px;
+    /* 배경색을 파란색으로 설정 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* 완전한 원형으로 만들기 */
+    border-radius: 50%;
+    /* 밑줄 제거 */
+    text-decoration: none;
+    /* 글자색을 흰색으로 설정 */
+    color: white;
+    /* 그림자 효과 추가 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* 변화 효과 설정 */
+    transition: all 0.3s ease;
+    /* 텍스트 가운데 정렬 */
+    text-align: center;
+    /* 안쪽 여백 설정 */
+    padding: 8px;
+}
+
+/* 챗봇 링크에 마우스를 올렸을 때 */
+.chatbot-link:hover {
+    /* 살짝 확대 */
+    transform: scale(1.1);
+    /* 그림자를 더 진하게 */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    /* 배경색을 더 밝게 */
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* 챗봇 아이콘 스타일 */
+.chatbot-icon {
+    /* 글자 크기 설정 */
+    font-size: 1.8rem;
+    /* 아래쪽 여백 */
+    margin-bottom: 2px;
+    /* 줄 높이 설정 */
+    line-height: 1;
+}
+
+/* 챗봇 텍스트 스타일 */
+.chatbot-text {
+    /* 글자 크기를 작게 설정 */
+    font-size: 0.65rem;
+    /* 글자 두께를 굵게 설정 */
+    font-weight: bold;
+    /* 줄 높이 설정 */
+    line-height: 1.1;
+    /* 글자 간격 설정 */
+    letter-spacing: -0.5px;
+}
+
+/* 반응형 디자인 (모바일 크기) */
+@media (max-width: 768px) {
+    /* 모바일에서 챗봇 버튼 위치 조정 */
+    .chatbot-button {
+        /* 하단에서 20px */
+        bottom: 20px;
+        /* 오른쪽에서 20px */
+        right: 20px;
+    }
+    
+    /* 모바일에서 챗봇 버튼 크기 조정 */
+    .chatbot-link {
+        /* 크기를 조금 작게 */
+        width: 70px;
+        height: 70px;
+        /* 안쪽 여백 조정 */
+        padding: 6px;
+    }
+    
+    /* 모바일에서 아이콘 크기 조정 */
+    .chatbot-icon {
+        font-size: 1.5rem;
+    }
+    
+    /* 모바일에서 텍스트 크기 조정 */
+    .chatbot-text {
+        font-size: 0.6rem;
+    }
+}
+
+/* 매우 작은 화면 (320px 이하) */
+@media (max-width: 320px) {
+    /* 작은 화면에서 챗봇 버튼 위치 조정 */
+    .chatbot-button {
+        /* 하단에서 15px */
+        bottom: 15px;
+        /* 오른쪽에서 15px */
+        right: 15px;
+    }
+    
+    /* 작은 화면에서 챗봇 버튼 크기 조정 */
+    .chatbot-link {
+        /* 크기를 더 작게 */
+        width: 60px;
+        height: 60px;
+        /* 안쪽 여백 조정 */
+        padding: 4px;
+    }
+    
+    /* 작은 화면에서 아이콘 크기 조정 */
+    .chatbot-icon {
+        font-size: 1.3rem;
+    }
+    
+    /* 작은 화면에서 텍스트 크기 조정 */
+    .chatbot-text {
+        font-size: 0.55rem;
+    }
+} 
